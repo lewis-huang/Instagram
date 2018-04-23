@@ -75,7 +75,12 @@ urllib.request.install_opener(opener)
 for objURL in picURLs:
     print(objURL.attrs["src"])
     filename = "g:\\Catoon\\desktop\\"+str(i)+".jpg"
-    urllib.request.urlretrieve(objURL.attrs["src"],filename)
+    try:
+        urllib.request.urlretrieve(objURL.attrs["src"],filename)
+    except Exception as E:
+        print (E)
+
+
     i=i+1
 
     #urllib.request.urlretrieve(objURL.attrs["src"],filename)#
