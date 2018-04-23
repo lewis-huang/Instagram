@@ -49,9 +49,15 @@ driver = webdriver.Chrome()
 driver.get("https://www.instagram.com/desktour/")
 time.sleep(5)
 js = "window.scrollTo(0,document.body.scrollHeight);"
-for objScroller in range(0,5):
+last_height = driver.execute_script("return document.body.scrollHeigth")
+while(True):
+
     driver.execute_script(js)
-    time.sleep(1)
+    time.sleep(5)
+    new_height=driver.execute_script("return document.body.scrollHeight")
+    if new_height == last_height:
+        break
+    last_height = new_height
 
 soup = BeautifulSoup(driver.page_source,"html.parser")
 picURLs = soup.find_all("img",class_="_2di5p")
