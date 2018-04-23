@@ -45,8 +45,8 @@ driver = webdriver.Chrome()
 # password.send_keys("lewis123456.")
 # submitbtn.send_keys(Keys.RETURN)
 
-
-driver.get("https://www.instagram.com/desktour/")
+picUrlList = []
+driver.get("https://www.instagram.com/randomcosplay/")
 time.sleep(5)
 js = "window.scrollTo(0,document.body.scrollHeight);"
 last_height = driver.execute_script("return document.body.scrollHeigth")
@@ -58,9 +58,10 @@ while(True):
     if new_height == last_height:
         break
     last_height = new_height
-
-soup = BeautifulSoup(driver.page_source,"html.parser")
-picURLs = soup.find_all("img",class_="_2di5p")
+    soup = BeautifulSoup(driver.page_source,"html.parser")
+    picURLs = soup.find_all("img",class_="_2di5p")
+    for objUrl in picURLs:
+        picUrlList.append(objUrl)
 i = 0
 socket.setdefaulttimeout(30)
 
@@ -78,7 +79,7 @@ urllib.request.install_opener(opener)
 
 
 
-for objURL in picURLs:
+for objURL in picUrlList:
     print(objURL.attrs["src"])
     filename = "g:\\Catoon\\desktop\\"+str(i)+".jpg"
     try:
