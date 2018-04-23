@@ -46,7 +46,7 @@ driver = webdriver.Chrome()
 # submitbtn.send_keys(Keys.RETURN)
 
 picUrlList = []
-driver.get("https://www.instagram.com/randomcosplay/")
+driver.get("https://www.instagram.com/em____photography/")
 time.sleep(5)
 js = "window.scrollTo(0,document.body.scrollHeight);"
 last_height = driver.execute_script("return document.body.scrollHeigth")
@@ -77,9 +77,12 @@ headers = {
 opener = urllib.request.build_opener(urllib.request.ProxyHandler(proxies))
 urllib.request.install_opener(opener)
 
-
-
-for objURL in picUrlList:
+singleUrlList = []
+for objUrl in picUrlList:
+    if (objUrl not in singleUrlList):
+        singleUrlList.append(objUrl)
+print(len(singleUrlList))
+for objURL in singleUrlList:
     print(objURL.attrs["src"])
     filename = "g:\\Catoon\\desktop\\"+str(i)+".jpg"
     try:
