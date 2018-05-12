@@ -84,7 +84,7 @@ for objUrl in picUrlList:
 print(len(singleUrlList))
 for objURL in singleUrlList:
     print(objURL.attrs["src"])
-    filename = "g:\\Catoon\\desktop\\"+str(i)+".jpg"
+    filename = "g:\\Catoon\\desktop\\exo\\"+str(i)+".jpg"
     try:
         urllib.request.urlretrieve(objURL.attrs["src"],filename)
     except Exception as E:
