@@ -12,6 +12,9 @@ import sys
 import socket
 import socks
 import time
+
+
+
 try:
     from urlparse import urljoin
     from urllib import urlretrieve
@@ -55,9 +58,10 @@ def main(columnUrl,columnName):
 
         last_height = new_height
         soup = BeautifulSoup(driver.page_source,"html.parser")
-        picURLs = soup.find_all("img",class_="_2di5p")
-
+        picURLs = soup.find_all("img",class_="FFVAD")
+        print(picURLs)
         for objUrl in picURLs:
+            print("url is %s"%(objUrl))
             picUrlList.append(objUrl)
 
     i = 0
@@ -86,7 +90,7 @@ def main(columnUrl,columnName):
         fileurl = objURL.attrs["src"]
         if (not os.path.exists(localPath)):
             os.mkdir(localPath)
-
+        print("the file Url is :%s" %(fileurl))
         if ( (i+1) % 10 != 0):
 
             lock = _thread.allocate_lock()
@@ -104,7 +108,9 @@ def main(columnUrl,columnName):
 
 
 
-if __name__== "__main__" :
-    columnUrl = "https://www.instagram.com/mavikitapseverr/"
-    columnName = "mavikitapseverr"
-    main(columnUrl,columnName)
+
+columnUrl = "https://www.instagram.com/joshkathey/"
+columnName = "joshkathey"
+main(columnUrl,columnName)
+
+

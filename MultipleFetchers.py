@@ -30,6 +30,8 @@ def fetchFile(FileUrl,LocalFile,Locker):
     urllib.request.install_opener(opener)
 
     try:
+        print("picture downloading begins...")
+        print("url:%s"%(FileUrl))
         urllib.request.urlretrieve(FileUrl, LocalFile)
     except Exception as E:
         print(E)
